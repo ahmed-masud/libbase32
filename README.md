@@ -21,4 +21,28 @@ This library is maintained by me, please don't bother anyone else about it. Espe
 
 # API
 
-  [to be completed]
+```C
+size_t base32enc(char *dest, const void *src, size_t s_len);
+```
+
+Encodes `s_len` bytes from `src` to base32 and stores the result in `dest`.  
+returns size of `dest`
+
+```C
+size_t base32dec(void *dest, size_t dest_len, const char *src);
+```
+
+Decodes `src` to `dest` for <i>up to</i> `dest_len` bytes.
+
+
+```C
+size_t base32encsize(size_t count);
+```
+
+Returns estimate of number of bytes required to encode `count` raw bytes
+
+```C
+size_t base32decsize(size_t count);
+```
+
+Returns estimate of number of bytes required to decode, `count` long base32 string
