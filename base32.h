@@ -38,9 +38,10 @@ static inline void die(int code, const char *fmt, ...) {
  * @function base32enc
  * Encodes s_len bytes from src to base32 and stores it in dest.
  *
- * @param dest  pointer to destination where encoding will be stored
- * @param src   pointer to data to be encoded
- * @param s_len length of data to be encoded
+ * @param char * dest  pointer to destination where encoding will be stored
+ * @param const void * src   pointer to data to be encoded
+ * @param size_t s_len length of data to be encoded
+ * @return size of encoded string
  */
 
 size_t base32enc(char *dest, const void *src, size_t s_len);

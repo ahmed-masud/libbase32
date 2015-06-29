@@ -82,10 +82,10 @@ size_t base32enc(char *dest, const void *_src, size_t ssize)
     const unsigned char *src = _src;
 
 
-    if ( ssize >= 0 && ssize <= 5 ) {
+    if ( ssize > 0 && ssize <= 5 ) {
         encode_tail(dest, src, ssize);
         dest[8] = 0;
-        return 0;
+        return 8;
     }
 
     ssize -= 5;
