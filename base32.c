@@ -78,14 +78,14 @@ static int encode_tail(char *dest, const void *_src, size_t len)
 
 size_t base32enc(char *dest, const void *_src, size_t ssize)
 {
-    int dk = 0, sk = 0;
+    int dk = 0, sk = 0, k;
     const unsigned char *src = _src;
 
 
     if ( ssize > 0 && ssize <= 5 ) {
         encode_tail(dest, src, ssize);
-        dest[8] = 0;
-        return 8;
+        dk = 8;
+        goto out;
     }
 
     ssize -= 5;
@@ -100,8 +100,16 @@ size_t base32enc(char *dest, const void *_src, size_t ssize)
         dk += 8;
     }
 
+out:
     dest[dk] = 0;
 
+    while(dest[dk-1] == 0 )
+        dk--;
+
+    while(dest[dk-1] == padding) {
+        dest[dk-1] = 0;
+        dk--;
+    }
     return dk;
 }
 
